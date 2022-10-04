@@ -32,13 +32,11 @@ public class DataHabitaciones {
 					
 					habitaciones.add(h);
 				}
-			
 			}
 		}
 		
 		catch (SQLException e) {
 			e.printStackTrace();
-			
 		} 
 		
 		finally {
@@ -66,7 +64,6 @@ public class DataHabitaciones {
 					+ "    `habitaciones`.`id_estado_hab`,\r\n"
 					+ "    `habitaciones`.`nro_hab`,\r\n"
 					+ "    `habitaciones`.`desc_hab`,\r\n"
-					+ "    `habitaciones`.`habitacionescol`\r\n"
 					+ "FROM `java_hotel`.`habitaciones` WHERE id_hab=?");
 			stmt.setInt(1, habitacion.getId_hab());
 			rs=stmt.executeQuery();
@@ -78,7 +75,6 @@ public class DataHabitaciones {
 				h.setId_estado_hab(rs.getInt("id_estado_hab"));
 				h.setNro_hab(rs.getInt("nro_hab"));
 				h.setDesc_hab(rs.getString("desc_hab"));
-				h.setHabitacionescol(rs.getString("habitacionescol"));
 			}
 		}
 		catch (SQLException e) {
@@ -94,7 +90,6 @@ public class DataHabitaciones {
 				e.printStackTrace();
 			}
 		}
-		
 		return h;
 	}
 	
@@ -126,19 +121,15 @@ public class DataHabitaciones {
 			stmt = DbConnector.getInstancia().getConn().
 					prepareStatement("UPDATE `java_hotel`.`habitaciones`\r\n"
 							+ "		SET\r\n"
-							+ "		`id_hab` = ?,\r\n"
 							+ "		`id_tipo_hab` = ?,\r\n"
 							+ "		`id_estado_hab` = ?,\r\n"
 							+ "		`nro_hab` = ?,\r\n"
 							+ "		`desc_hab` = ?,\r\n"
-							+ "		`habitacionescol` = ?\r\n"
 							+ "		WHERE `id_hab` = ?;");
-			stmt.setInt(1, habitacion.getId_hab());
-			stmt.setInt(2, habitacion.getId_tipo_hab());
-			stmt.setInt(3, habitacion.getId_estado_hab());
-			stmt.setInt(4, habitacion.getNro_hab());
-			stmt.setString(5, habitacion.getDesc_hab());
-			stmt.setString(6, habitacion.getHabitacionescol());
+			stmt.setInt(1, habitacion.getId_tipo_hab());
+			stmt.setInt(2, habitacion.getId_estado_hab());
+			stmt.setInt(3, habitacion.getNro_hab());
+			stmt.setString(4, habitacion.getDesc_hab());
 			stmt.executeUpdate();
 		} 
 		catch (SQLException e) {
@@ -153,8 +144,6 @@ public class DataHabitaciones {
             	e.printStackTrace();
             }
 		}
-		
-
 	}
 	
 	public void add(Habitaciones habitacion) {
@@ -169,16 +158,14 @@ public class DataHabitaciones {
 							+ "`id_estado_hab`,\r\n"
 							+ "`nro_hab`,\r\n"
 							+ "`desc_hab`,\r\n"
-							+ "`habitacionescol`)\r\n"
 							+ "VALUES\r\n"
-							+ "(?,?,?,?,?,);\r\n",
+							+ "(?,?,?,?);\r\n",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setInt(1, habitacion.getId_tipo_hab());
 			stmt.setInt(2, habitacion.getId_estado_hab());
 			stmt.setInt(3, habitacion.getNro_hab());
 			stmt.setString(4, habitacion.getDesc_hab());
-			stmt.setString(5, habitacion.getHabitacionescol());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
@@ -197,6 +184,5 @@ public class DataHabitaciones {
             	e.printStackTrace();
             }
 		}
-
 	}
 }
