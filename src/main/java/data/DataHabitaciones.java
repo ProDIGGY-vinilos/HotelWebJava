@@ -19,18 +19,16 @@ public class DataHabitaciones {
 					+ "    `habitaciones`.`id_estado_hab`,\r\n"
 					+ "    `habitaciones`.`nro_hab`,\r\n"
 					+ "    `habitaciones`.`desc_hab`,\r\n"
-					+ "    `habitaciones`.`habitacionescol`\r\n"
 					+ "FROM `java_hotel`.`habitaciones`;\r\n");
 			
 			if(rs!=null) {
 				while(rs.next()) {
 					Habitaciones h = new Habitaciones();
-					h.setId_hab(rs.getInt("ide_hab"));
-					h.setId_tipo_hab(rs.getInt("id_estado_hab"));
+					h.setId_hab(rs.getInt("id_hab"));
+					h.setId_tipo_hab(rs.getInt("id_tipo_hab"));
 					h.setId_estado_hab(rs.getInt("id_estado_hab"));
 					h.setNro_hab(rs.getInt("nro_hab"));
 					h.setDesc_hab(rs.getString("desc_hab"));
-					h.setHabitacionescol(rs.getString("habitacionescol"));
 					
 					habitaciones.add(h);
 				}
