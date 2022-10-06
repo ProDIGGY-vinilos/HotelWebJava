@@ -10,7 +10,7 @@ public class DataFormaPago {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		LinkedList<FormaPago> pago = new LinkedList<>();
+		LinkedList<FormaPago> pagos = new LinkedList<>();
 		
 		try {
 			stmt = DbConnector.getInstancia().getConn().createStatement();
@@ -22,7 +22,7 @@ public class DataFormaPago {
 					f.setId_forma_pago(rs.getInt("id_forma_pago"));
 					f.setDesc_forma_pago(rs.getString("desc_forma_pago"));
 					
-					pago.add(f);
+					pagos.add(f);
 				}
 			}
 		} catch (SQLException e) {
@@ -41,7 +41,7 @@ public class DataFormaPago {
 			}
 		}
 		
-		return pago;
+		return pagos;
 	}
 	
 	public FormaPago getById(FormaPago pago) {
