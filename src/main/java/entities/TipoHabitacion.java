@@ -1,7 +1,6 @@
 package entities;
 
 public class TipoHabitacion {
-	//yo
 	private int id_tipo_hab;
 	private int id_hab;
 	private int capacidad_tipo_hab;

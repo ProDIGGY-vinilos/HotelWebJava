@@ -1,12 +1,13 @@
 package data;
 
 import java.sql.*;
+import java.time.*;
 import java.util.LinkedList;
 import entities.*;
 
-import entities.Reservas;
-
 public class DataReservas {
+	
+	ZoneId defaultZoneId = ZoneId.systemDefault();
 	
 	public LinkedList<Reservas> getAll(){
 		Statement stmt = null;
@@ -24,11 +25,11 @@ public class DataReservas {
 					r.setId_reserva(rs.getInt("idreserva"));
 					r.setId_cliente(rs.getInt("idcliente"));
 					r.setId_habitacion(rs.getInt("idhabitacion"));
-					r.setFecha_reserva(rs.getTimestamp("fecha_reserva"));
-					r.setFecha_checkin(rs.("fecha_checkin"));
-					r.setFecha_checkout(rs.getTimestamp("fecha_checkout"));
-					r.setFecha_checkinreal(rs.getTimestamp("fecha_checkinreal"));
-					r.setFecha_checkoutreal(rs.getTimestamp("fecha_checkoutreal"));
+					r.setFecha_reserva(rs.getTimestamp("fecha_reserva").toInstant().atZone(defaultZoneId));
+					r.setFecha_checkin(rs.getTimestamp("fecha_checkin").toInstant().atZone(defaultZoneId));
+					r.setFecha_checkout(rs.getTimestamp("fecha_checkout").toInstant().atZone(defaultZoneId));
+					r.setFecha_checkinreal(rs.getTimestamp("fecha_checkinreal").toInstant().atZone(defaultZoneId));
+					r.setFecha_checkoutreal(rs.getTimestamp("fecha_checkoutreal").toInstant().atZone(defaultZoneId));
 					r.setEstado(rs.getString("estado"));
 					
 					res.add(r);
@@ -66,11 +67,11 @@ public class DataReservas {
 					r.setId_reserva(rs.getInt("idreserva"));
 					r.setId_cliente(rs.getInt("idcliente"));
 					r.setId_habitacion(rs.getInt("idhabitacion"));
-					r.setFecha_reserva(rs.getTimestamp("fecha_reserva"));
-					r.setFecha_checkin(rs.getTimestamp("fecha_checkin"));
-					r.setFecha_checkout(rs.getTimestamp("fecha_checkout"));
-					r.setFecha_checkinreal(rs.getTimestamp("fecha_checkinreal"));
-					r.setFecha_checkoutreal(rs.getTimestamp("fecha_checkoutreal"));
+					r.setFecha_reserva(rs.getTimestamp("fecha_reserva").toInstant().atZone(defaultZoneId));
+					r.setFecha_checkin(rs.getTimestamp("fecha_checkin").toInstant().atZone(defaultZoneId));
+					r.setFecha_checkout(rs.getTimestamp("fecha_checkout").toInstant().atZone(defaultZoneId));
+					r.setFecha_checkinreal(rs.getTimestamp("fecha_checkinreal").toInstant().atZone(defaultZoneId));
+					r.setFecha_checkoutreal(rs.getTimestamp("fecha_checkoutreal").toInstant().atZone(defaultZoneId));
 					r.setEstado(rs.getString("estado"));
 					
 			}
@@ -100,7 +101,7 @@ public class DataReservas {
 							PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, reserva.getId_cliente());
 			stmt.setInt(2, reserva.getId_habitacion());
-			stmt.setTimestamp(3, reserva.getFecha_reserva());
+			stmt.setTimestamp(3, reserva.getFecha_reserva().toInstant());
 			stmt.setTimestamp(4, reserva.getFecha_checkin());
 			stmt.setTimestamp(5, reserva.getFecha_checkout());
 			stmt.setTimestamp(6, reserva.getFecha_checkinreal());
