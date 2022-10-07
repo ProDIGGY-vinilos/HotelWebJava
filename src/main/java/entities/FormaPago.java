@@ -2,7 +2,6 @@ package entities;
 
 public class FormaPago {
 
-	//yo
 	private int id_forma_pago;
 	private String desc_forma_pago;
 	
@@ -15,5 +14,8 @@ public class FormaPago {
 	}
 	public int getId_forma_pago() {
 		return id_forma_pago;
+	}
+	public void setId_forma_pago(int id_forma_pago) {
+		this.id_forma_pago = id_forma_pago;
 	}
 }

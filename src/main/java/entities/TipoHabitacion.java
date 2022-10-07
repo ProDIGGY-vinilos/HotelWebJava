@@ -1,7 +1,6 @@
 package entities;
 
 public class TipoHabitacion {
-	//yo
 	private int id_tipo_hab;
 	private int id_hab;
 	private int capacidad_tipo_hab;
@@ -26,6 +25,9 @@ public class TipoHabitacion {
 	}
 	public int getId_tipo_hab() {
 		return id_tipo_hab;
+	}
+	public void setId_tipo_hab(int id_tipo_hab) {
+		this.id_tipo_hab = id_tipo_hab;
 	}
 	
 		
