@@ -10,7 +10,7 @@ public class DataTipoUsuario {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		LinkedList<TipoUsuario> tipos = new LinkedList<>();
+		LinkedList<TipoUsuario> tipos = new LinkedList<TipoUsuario>();
 		
 		try {
 			stmt = DbConnector.getInstancia().getConn().createStatement();
