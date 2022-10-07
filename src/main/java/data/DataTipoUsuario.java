@@ -14,7 +14,7 @@ public class DataTipoUsuario {
 		
 		try {
 			stmt = DbConnector.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select id_tipo_usuario from tipo_usuario");
+			rs = stmt.executeQuery("select id_tipo_usuario,desc_usuario from tipo_usuario");
 			
 			if (rs!=null) {
 				while(rs.next()) {
@@ -73,7 +73,7 @@ public class DataTipoUsuario {
 				e.printStackTrace();
 			}
 		}
-		return tipo;
+		return t;
 	}
 	
 	public void add(TipoUsuario tipo) {
@@ -109,8 +109,9 @@ public class DataTipoUsuario {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"update tipo_usuario set desc_usuario where id_tipo_usuario=?");
-			stmt.setString(1, tipo.getDesc_usuario());
+							"update tipo_usuario set desc_usuario=? where id_tipo_usuario=?");
+			stmt.setInt(1, tipo.getId_tipo_usuario());
+			stmt.setString(2, tipo.getDesc_usuario());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
             e.printStackTrace();

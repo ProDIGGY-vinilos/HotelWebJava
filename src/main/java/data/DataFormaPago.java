@@ -73,7 +73,7 @@ public class DataFormaPago {
 				e.printStackTrace();
 			}
 		}
-		return pago;
+		return f;
 	}
 	
 	public void add(FormaPago pago) {
@@ -109,8 +109,9 @@ public class DataFormaPago {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"update forma_pago set desc_forma_pago where id_forma_pago=?");
-			stmt.setString(1, pago.getDesc_forma_pago());
+							"update forma_pago set desc_forma_pago=? where id_forma_pago=?");
+			stmt.setInt(1, pago.getId_forma_pago());
+			stmt.setString(2, pago.getDesc_forma_pago());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
             e.printStackTrace();
