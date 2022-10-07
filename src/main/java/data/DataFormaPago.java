@@ -10,7 +10,7 @@ public class DataFormaPago {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		LinkedList<FormaPago> pagos = new LinkedList<>();
+		LinkedList<FormaPago> pagos = new LinkedList<FormaPago>();
 		
 		try {
 			stmt = DbConnector.getInstancia().getConn().createStatement();
