@@ -25,11 +25,11 @@ public class Clientes {
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
-	public String getPasaporate() {
+	public String getPasaporte() {
 		return pasaporte;
 	}
-	public void setPasaporate(String pasaporate) {
-		this.pasaporte = pasaporate;
+	public void setPasaporte(String pasaporte) {
+		this.pasaporte = pasaporte;
 	}
 	
 	
