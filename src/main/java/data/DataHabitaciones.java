@@ -70,7 +70,7 @@ public class DataHabitaciones {
 			
 			if(rs!=null && rs.next()) {
 				h = new Habitaciones();
-				h.setId_hab(rs.getInt("ide_hab"));
+				h.setId_hab(rs.getInt("id_hab"));
 				h.setId_tipo_hab(rs.getInt("id_estado_hab"));
 				h.setId_estado_hab(rs.getInt("id_estado_hab"));
 				h.setNro_hab(rs.getInt("nro_hab"));
@@ -130,6 +130,7 @@ public class DataHabitaciones {
 			stmt.setInt(2, habitacion.getId_estado_hab());
 			stmt.setInt(3, habitacion.getNro_hab());
 			stmt.setString(4, habitacion.getDesc_hab());
+			stmt.setInt(5, habitacion.getId_hab());
 			stmt.executeUpdate();
 		} 
 		catch (SQLException e) {
