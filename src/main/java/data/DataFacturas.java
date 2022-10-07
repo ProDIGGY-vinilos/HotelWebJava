@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 
-import entities.Habitaciones;
 import entities.Facturas;
 
 //
@@ -64,8 +63,7 @@ public class DataFacturas {
 		Facturas f = null;
 		
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("stancia().getConn().createStatement();\r\n"
-					+ "			rs = stmt.executeQuery(\"SELECT `facturas`.`id_factura`,\r\n"
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("SELECT `facturas`.`id_factura`,\r\n"
 					+ "					+ \"    `facturas`.`id_cliente`,\r\n"
 					+ "					+ \"    `facturas`.`id_reserva`,\r\n"
 					+ "					+ \"    `facturas`.`id_forma_pago`,\r\n"
@@ -104,7 +102,7 @@ public class DataFacturas {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"DELETE FROM `java_hotel`.`habitaciones` WHERE id_factura=?");
+							"DELETE FROM `java_hotel`.`facturas` WHERE id_factura=?");
 			stmt.setInt(1, factura.getId_factura());
 			stmt.executeUpdate();
 			
@@ -152,9 +150,6 @@ public class DataFacturas {
             }
 		}
 	}
-	  
-	
-	
 	
 	public void add(Facturas factura) {
 		PreparedStatement stmt= null;

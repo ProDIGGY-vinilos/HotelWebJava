@@ -2,15 +2,9 @@ package entities;
 
 public class TipoHabitacion {
 	private int id_tipo_hab;
-	private int id_hab;
 	private int capacidad_tipo_hab;
 	private String desc_tipo_hab;
-	public int getId_hab() {
-		return id_hab;
-	}
-	public void setId_hab(int id_hab) {
-		this.id_hab = id_hab;
-	}
+	
 	public int getCapacidad_tipo_hab() {
 		return capacidad_tipo_hab;
 	}
