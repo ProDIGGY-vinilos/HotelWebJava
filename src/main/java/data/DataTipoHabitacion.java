@@ -14,13 +14,12 @@ public class DataTipoHabitacion {
 		
 		try {
 			stmt = DbConnector.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select id_tipo_hab,id_hab,capacidad_tipo_hab,desc_tipo_hab from tipo_hab");
+			rs = stmt.executeQuery("select id_tipo_hab,capacidad_tipo_hab,desc_tipo_hab from tipo_hab");
 			
 			if (rs!=null) {
 				while(rs.next()) {
 					TipoHabitacion t = new TipoHabitacion();
 					t.setId_tipo_hab(rs.getInt("id_tipo_hab"));
-					t.setId_hab(rs.getInt("id_hab"));
 					t.setCapacidad_tipo_hab(rs.getInt("capacidad_tipo_hab"));
 					t.setDesc_tipo_hab(rs.getString("desc_tipo_hab"));
 					
@@ -51,13 +50,12 @@ public class DataTipoHabitacion {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = DbConnector.getInstancia().getConn().prepareStatement("select id_tipo_hab,id_hab,capacidad_tipo_hab,desc_tipo_hab from tipo_hab where id_tipo_hab=?");
+			stmt = DbConnector.getInstancia().getConn().prepareStatement("select id_tipo_hab,capacidad_tipo_hab,desc_tipo_hab from tipo_hab where id_tipo_hab=?");
 			stmt.setInt(1, tipoH.getId_tipo_hab());
 			rs=stmt.executeQuery();
 			if (rs!=null && rs.next()) {
 					t = new TipoHabitacion();
 					t.setId_tipo_hab(rs.getInt("id_tipo_hab"));
-					t.setId_hab(rs.getInt("id_hab"));
 					t.setCapacidad_tipo_hab(rs.getInt("capacidad_tipo_hab"));
 					t.setDesc_tipo_hab(rs.getString("desc_tipo_hab"));
 			}
@@ -83,11 +81,10 @@ public class DataTipoHabitacion {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into tipo_hab(id_hab,capacidad_tipo_hab,desc_tipo_hab) values(?,?,?)",
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into tipo_hab(capacidad_tipo_hab,desc_tipo_hab) values(?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS);
-			stmt.setInt(1,tipoH.getId_hab());
-			stmt.setInt(2, tipoH.getCapacidad_tipo_hab());
-			stmt.setString(3, tipoH.getDesc_tipo_hab());
+			stmt.setInt(1, tipoH.getCapacidad_tipo_hab());
+			stmt.setString(2, tipoH.getDesc_tipo_hab());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
@@ -115,11 +112,10 @@ public class DataTipoHabitacion {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"update tipo_hab set  id_hab=?,capacidad_tipo_hab=?,desc_tipo_hab=? where id_tipo_hab=?");
-			stmt.setInt(1, tipoH.getId_hab());
-			stmt.setInt(2, tipoH.getCapacidad_tipo_hab());
-			stmt.setString(3, tipoH.getDesc_tipo_hab());
-			stmt.setInt(4, tipoH.getId_tipo_hab());
+							"update tipo_hab set  capacidad_tipo_hab=?,desc_tipo_hab=? where id_tipo_hab=?");
+			stmt.setInt(1, tipoH.getCapacidad_tipo_hab());
+			stmt.setString(2, tipoH.getDesc_tipo_hab());
+			stmt.setInt(3, tipoH.getId_tipo_hab());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
             e.printStackTrace();
