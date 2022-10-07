@@ -13,7 +13,7 @@ public class DataReservas {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		LinkedList<Reservas> res = new LinkedList<>();
+		LinkedList<Reservas> res = new LinkedList<Reservas>();
 		
 		try {
 			stmt = DbConnector.getInstancia().getConn().createStatement();
@@ -135,15 +135,15 @@ public class DataReservas {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"update reservas set  idcliente=?,idhabitacion=?,fecha_reserva=?,fecha_checkin=?,fecha_checkout=?,fecha_checkinreal=?,fecha_checkoutreal=?,estado=? where idreserva=?");
-			stmt.setInt(1, reserva.getId_reserva());
-			stmt.setInt(2, reserva.getId_cliente());
-			stmt.setInt(3, reserva.getId_habitacion());
-			stmt.setTimestamp(4, reserva.getFecha_reserva());
-			stmt.setTimestamp(5, reserva.getFecha_checkin());
-			stmt.setTimestamp(6, reserva.getFecha_checkout());
-			stmt.setTimestamp(7, reserva.getFecha_checkinreal());
-			stmt.setTimestamp(8, reserva.getFecha_checkoutreal());
-			stmt.setString(9, reserva.getEstado());
+			stmt.setInt(1, reserva.getId_cliente());
+			stmt.setInt(2, reserva.getId_habitacion());
+			stmt.setTimestamp(3, reserva.getFecha_reserva());
+			stmt.setTimestamp(4, reserva.getFecha_checkin());
+			stmt.setTimestamp(5, reserva.getFecha_checkout());
+			stmt.setTimestamp(6, reserva.getFecha_checkinreal());
+			stmt.setTimestamp(7, reserva.getFecha_checkoutreal());
+			stmt.setString(8, reserva.getEstado());
+			stmt.setInt(9, reserva.getId_reserva());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
             e.printStackTrace();

@@ -110,8 +110,8 @@ public class DataTipoUsuario {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
 							"update tipo_usuario set desc_usuario=? where id_tipo_usuario=?");
-			stmt.setInt(1, tipo.getId_tipo_usuario());
-			stmt.setString(2, tipo.getDesc_usuario());
+			stmt.setString(1, tipo.getDesc_usuario());
+			stmt.setInt(2, tipo.getId_tipo_usuario());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
             e.printStackTrace();
