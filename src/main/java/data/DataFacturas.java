@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import entities.Habitaciones;
 import entities.Facturas;
 
+//
+
 public class DataFacturas {
 	public LinkedList<Facturas> getAll(){
 		Statement stmt=null;
@@ -150,6 +152,9 @@ public class DataFacturas {
             }
 		}
 	}
+	  
+	
+	
 	
 	public void add(Facturas factura) {
 		PreparedStatement stmt= null;
