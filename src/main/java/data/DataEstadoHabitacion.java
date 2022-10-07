@@ -14,15 +14,15 @@ public class DataEstadoHabitacion {
 
 		try {
 			stmt = DbConnector.getInstancia().getConn().createStatement();
-			rs = stmt.executeQuery("select id_estado_reserva,desc_estado_reserva from estado_reserva");
+			rs = stmt.executeQuery("select id_estado_hab,desc_estado_hab from estado_reserva");
 			
 			if (rs!=null) {
 				while(rs.next()) {
-					EstadoReserva er = new EstadoReserva() ;
-					er.setId_estado_reserva(rs.getInt("id_estado_reserva"));
-					er.setDesc_estado_reserva(rs.getString("desc_estado_reserva"));
+					EstadoHabitacion eh = new EstadoHabitacion();
+					eh.setId_estado_hab(rs.getInt("id_estado_hab"));
+					eh.setDesc_estado_hab(rs.getString("desc_estado_hab"));
 					
-					estadoR.add(er);
+					estadoH.add(eh);
 				}
 			}
 		} catch (SQLException e) {
@@ -41,21 +41,21 @@ public class DataEstadoHabitacion {
 			}
 		}
 		
-		return estadoR;
+		return estadoH;
 	}
 	
-	public EstadoReserva getById(EstadoReserva estadoR) {
-		EstadoReserva er=null;
+	public EstadoHabitacion getById(EstadoHabitacion estadoH) {
+		EstadoHabitacion eh=null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = DbConnector.getInstancia().getConn().prepareStatement("select id_estado_reserva,desc_estado_reserva from estado_reserva where id_estado_reserva=?");
-			stmt.setInt(1, estadoR.getId_estado_reserva());
+			stmt = DbConnector.getInstancia().getConn().prepareStatement("select id_estado_hab,desc_estado_hab from estado_hab where id_estado_hab=?");
+			stmt.setInt(1, estadoH.getId_estado_hab());
 			rs=stmt.executeQuery();
 			if (rs!=null && rs.next()) {
-					er = new EstadoReserva();
-					er.setId_estado_reserva(rs.getInt("id_estado_reserva"));
-					er.setDesc_estado_reserva(rs.getString("desc_estado_reserva"));
+					eh = new EstadoHabitacion();
+					eh.setId_estado_hab(rs.getInt("id_estado_hab"));
+					eh.setDesc_estado_hab(rs.getString("desc_estado_hab"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,21 +72,21 @@ public class DataEstadoHabitacion {
 				e.printStackTrace();
 			}
 		}
-		return er;
+		return eh;
 	}
 	
-	public void add(EstadoReserva estadoR) {
+	public void add(EstadoHabitacion estadoH) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into estado_reserva(desc_estado_reserva) values(?)",
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into estado_hab(desc_estado_hab) values(?)",
 							PreparedStatement.RETURN_GENERATED_KEYS);
-			stmt.setString(1,estadoR.getDesc_estado_reserva());
+			stmt.setString(1,estadoH.getDesc_estado_hab());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
             if(keyResultSet!=null && keyResultSet.next()){
-                estadoR.setId_estado_reserva(keyResultSet.getInt(1));
+                estadoH.setId_estado_hab(keyResultSet.getInt(1));
             }
 
 			
@@ -103,14 +103,14 @@ public class DataEstadoHabitacion {
 		}
 	}
 	
-	public void update(EstadoReserva estadoR) {
+	public void update(EstadoHabitacion estadoH) {
 		PreparedStatement stmt= null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"update estado_reserva set desc_estado_reserva=? where id_estado_reserva=?");
-			stmt.setString(1, estadoR.getDesc_estado_reserva());
-			stmt.setInt(2, estadoR.getId_estado_reserva());
+							"update estado_hab set desc_estado_hab=? where id_estado_hab=?");
+			stmt.setString(1, estadoH.getDesc_estado_hab());
+			stmt.setInt(2, estadoH.getId_estado_hab());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
             e.printStackTrace();
@@ -124,13 +124,13 @@ public class DataEstadoHabitacion {
 		}
 	}
 	
-	public void remove(EstadoReserva estadoR) {
+	public void remove(EstadoHabitacion estadoH) {
 		PreparedStatement stmt= null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"delete from estado_reserva where id_estado_reserva=?");
-			stmt.setInt(1, estadoR.getId_estado_reserva());
+							"delete from estado_hab where id_estado_hab=?");
+			stmt.setInt(1, estadoH.getId_estado_hab());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
             e.printStackTrace();
