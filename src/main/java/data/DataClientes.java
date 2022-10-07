@@ -13,7 +13,7 @@ public class DataClientes {
 	public LinkedList<Clientes> getAll(){
 		Statement stmt = null;
 		ResultSet rs = null;
-		
+		//comentario al pedo
 		LinkedList<Clientes> cl = new LinkedList<>();
 		
 		try {
